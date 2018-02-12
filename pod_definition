@@ -1,0 +1,25 @@
+1.Pod is smallest deployable unit in kubernetes with atleast one container per pod
+2.Pod gives more container run-time environment when compared to the docker
+
+sample pod definition file
+
+pod.yml
+
+apiVersion: v1
+kind: pod
+metadata:    # this is meta data about the pod like pod name
+
+  name: podname
+  lables:
+    app: my-app   # lables are nothing but names used as selectors when working with multiple pods
+
+
+spec:   # This is specification of the containers that are going to launch in the pod
+  containers:
+   -  name: name of the container
+      image: image of the container like nginx
+      ports:
+        - containerPort: 443
+      volumeMounts:
+        - mountPath: /volumes/logs
+

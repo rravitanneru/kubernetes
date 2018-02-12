@@ -1,0 +1,15 @@
+1.Kubernetes is a container orchestration tool (management) tool for maintaining the docker engine containers and rkt engine containers (rkt engine is a rarely used container engine opponent to docker)
+
+2.we can install kubernetes anywhere 
+3.Minikube is a single node kubernetes cluster which is opt for practising and development 
+4.To Run a multi-node cluster in locally we need docker EE (docker enterprize edition)
+5. We can install kubernetes using 'kubeadm' for multi-node cluster locally
+6.Kubectl is a tool to interact with the kubernetes cluster works with both locally installed cluster and a cloud kubernetes cluster
+
+--------------------------------------------------------------------------
+Terms in the kubernetes and their meaning
+
+pod :
+
+Pod is a tightly packed container of same kind or different types of containers
+
