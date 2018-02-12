@@ -12,7 +12,8 @@ metadata:    # this is meta data about the pod like pod name
   name: podname
   lables:
     app: my-app   # lables are nothing but names used as selectors when working with multiple pods
-
+    version: v1
+    role: backend
 
 spec:   # This is specification of the containers that are going to launch in the pod
   containers:
