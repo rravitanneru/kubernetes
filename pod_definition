@@ -19,6 +19,7 @@ spec:   # This is specification of the containers that are going to launch in th
   containers:
    -  name: name of the container
       image: image of the container like nginx
+      command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']       # command for the container runtime otherwise it will fail
       ports:
         - containerPort: 443
       volumeMounts:
