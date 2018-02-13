@@ -1,0 +1,56 @@
+1.Statefulsets are used to deploy the stateful applications in the kubernetes
+2.The statefulsets are in beta stage prior to kubernetes version 1.9
+3.statefulset contains three parts
+
+   a. Headless service which is used to identify the stateful applications
+   b. statefulset declaration
+   c. volumeclaimtemplate for the persistant storage (perminent storage) for the stateful applications
+
+------------------------------------------------------------------------------------
+example statefulset declaration                                                    |
+------------------------------------------------------------------------------------
+
+statefulset.yml
+
+apiversion: v1
+kind: service
+metadata:
+  name: example
+  lables:
+    app: example-app
+spec:
+  ports:
+  containerport: 80
+  name: web
+  selector:
+    app: example-app
+---
+
+apiversion: v1/apps
+kind: statefulset
+metadata:
+  name: example
+  lables:
+    app: example-app
+spec:
+  terminationGraceperiodseconds: 10
+  containers:
+    - name: example-app
+      image: example_image-1.0
+      ports:
+        - containerport: 80
+          name: example
+      volumemounts:
+        name: example
+        mountpaht: /usr/share/nginx/html
+
+volumeclaimtemplates:
+  - metadata:
+    name: example   # name should match with volumemounts name in the statefulset declaration
+    spec:
+    accessmode: [ "ReadWriteOnce"]
+    storageclassname: my-storage-class
+    resources:
+      requests:
+      storage: 1Gi
+
