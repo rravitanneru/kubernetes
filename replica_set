@@ -1,0 +1,42 @@
+1. replica set is a way of replicating pods in the kubernetes
+2. replica set is a next generation for the replication controller
+3. The only difference replica set and replication controller is that replica se   t supports the selector option support
+
+--------------------------------------------------------------------------
+example for a replica set                                                |
+--------------------------------------------------------------------------
+
+replicaset.yml
+
+apiVersion: apps/v1
+kind: replicaset
+metadata:
+  name: example_replica_set
+  lables:
+    app: example
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+template:
+  metadata:
+    lables:
+      name : example
+      tier: frontend
+  spec:
+    containers:
+    - name: example_container
+      image: nginx
+      resources:
+        requests:
+          cpu: 100m
+          memory: 100mi
+      env:
+       -  name: GET_HOSTS_FROM
+          value: dns
+     ports:
+      containerPorts: 80
