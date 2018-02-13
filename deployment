@@ -125,20 +125,37 @@ kubectl autoscale deployment nginx-deployment --min=10 --max=15 --cpu-percent=80
 # sample output
 deployment "nginx-deployment" autoscaled
 
+To pause the deployment
+$ kubectl rollout pause deployment/nginx-deployment
+
+sample-output
+
+deployment "nginx-deployment" paused
+
+After changing as many changes we can resume the deployment
+
+example change 1
+
+kubectl set image deploy/nginx-deployment nginx=nginx:1.9.1
+
+sample-out put
+deployment "nginx-deployment" image updated
+
+example change 2
+kubectl set resources deployment nginx-deployment -c=nginx --limits=cpu=200m,memory=512Mi
+
+sample-output
+
+deployment "nginx-deployment" resource requirements updated
+
+resume the deployment
+
+kubectl rollout resume deploy/nginx-deployment
+
+sample-output
+deployment "nginx" resumed
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Note: You cannot rollback a paused Deployment until you resume it.
 
 
